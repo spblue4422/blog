@@ -1,41 +1,46 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 
-import Header from './Header';
+import styled from 'styled-components';
 import './Layout.css';
+import { Sidebar } from './Sidebar';
 
+const Wrapper = styled.div`
+    width: 100%;
+    heigth: 100vh;
+    display: flex;
+`;
+
+const ListWrapper = styled.div`
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 30px;
+`;
+
+const ListHeader = styled.div`
+    margin: 50px auto 0 auto;
+    width: 60%;
+    font-size: 20px;
+    border-bottom: 1px solid;
+    padding: 10px 0 30px 0;
+`;
+
+const Content = styled.div`
+    margin: 30px auto 0 auto;
+    width: 60%;
+`;
+
+//index page 일때만 listheader 추가
 const Layout: React.FC = ({ children }) => {
-    const data = useStaticQuery<GatsbyTypes.SiteTitleQueryQuery>(graphql`
-        query SiteTitleQuery {
-            site {
-                siteMetadata {
-                    title
-                }
-            }
-        }
-    `);
-
     return (
-        <>
-            <Header />
-            <div
-                style={{
-                    margin: `0 auto`,
-                    maxWidth: 960,
-                    padding: `0 1.0875rem 1.45rem`
-                }}
-            >
-                <main>{children}</main>
-                <footer
-                    style={{
-                        marginTop: `2rem`
-                    }}
-                >
-                    © {new Date().getFullYear()}, Built with
-                    {` `}
-                </footer>
-            </div>
-        </>
+        <Wrapper>
+            <Sidebar />
+            <ListWrapper>
+                <Content>{children}</Content>
+            </ListWrapper>
+        </Wrapper>
     );
 };
 

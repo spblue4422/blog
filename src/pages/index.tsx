@@ -3,17 +3,18 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import { Query } from '../graphql-types';
 
 import Layout from '../components/Layout';
+//import '.BasicDesign.scss';
 
 const LatestPostListQuery = graphql`
     query {
-        allMarkdownRemark {
+        allMarkdownRemark(sort: { order: DESC, fields: frontmatter___last_modified_at }) {
             edges {
                 node {
                     excerpt(truncate: true, pruneLength: 200)
                     frontmatter {
                         title
                         path
-                        last_modified_at(formatString: "YYYY-MM-DD HH:mm:ss")
+                        last_modified_at(formatString: "YYYY-MM-DD")
                     }
                     id
                 }
@@ -26,7 +27,7 @@ const IndexPage: React.FC = () => {
     const data = useStaticQuery<Query>(LatestPostListQuery);
     return (
         <Layout>
-            <h1>Hi people</h1>
+            {/* children */}
             <ul>
                 {data.allMarkdownRemark.edges.map(({ node }) => (
                     <li key={node.id}>
@@ -38,10 +39,6 @@ const IndexPage: React.FC = () => {
                     </li>
                 ))}
             </ul>
-            <p>
-                <Link to="/page-2/">Go to page 2</Link> <br />
-                <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-            </p>
         </Layout>
     );
 };
