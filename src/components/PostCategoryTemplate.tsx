@@ -13,3 +13,7 @@ const PostListTemplate: React.FC<IPostListTemplateProps> = React.memo((props) =>
     //nodes.map(node => (key={node.id} post={node}));
     return <Layout></Layout>;
 });
+
+PostListTemplate.displayName = 'PostListTemplate';
+
+export default PostListTemplate;

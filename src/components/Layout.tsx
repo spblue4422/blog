@@ -6,17 +6,17 @@ import { Sidebar } from './Sidebar';
 
 const Wrapper = styled.div`
     width: 100%;
-    heigth: 100vh;
+    height: 100vh;
     display: flex;
 `;
 
-const ListWrapper = styled.div`
+const PostsWrapper = styled.div`
     flex: 5;
-    display: flex;
-    flex-direction: column;
+    height: 100vh;
     align-items: center;
     margin: 0 auto;
     padding: 30px;
+    overflow-y: scroll;
 `;
 
 const ListHeader = styled.div`
@@ -37,9 +37,10 @@ const Layout: React.FC = ({ children }) => {
     return (
         <Wrapper>
             <Sidebar />
-            <ListWrapper>
+            <PostsWrapper>
+                {/* children */}
                 <Content>{children}</Content>
-            </ListWrapper>
+            </PostsWrapper>
         </Wrapper>
     );
 };

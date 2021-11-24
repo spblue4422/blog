@@ -312,12 +312,6 @@ type SitePage = Node & {
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
-  readonly context: Maybe<SitePageContext>;
-};
-
-type SitePageContext = {
-  readonly html: Maybe<Scalars['String']>;
-  readonly title: Maybe<Scalars['String']>;
 };
 
 type MarkdownHeading = {
@@ -392,8 +386,8 @@ type MarkdownRemark_tableOfContentsArgs = {
 type MarkdownRemarkFrontmatter = {
   readonly title: Maybe<Scalars['String']>;
   readonly path: Maybe<Scalars['String']>;
-  readonly last_modified_at: Maybe<Scalars['Date']>;
   readonly categories: Maybe<Scalars['String']>;
+  readonly last_modified_at: Maybe<Scalars['Date']>;
 };
 
 
@@ -928,7 +922,6 @@ type Query_sitePageArgs = {
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
-  context: Maybe<SitePageContextFilterInput>;
 };
 
 
@@ -1096,8 +1089,8 @@ type MarkdownRemarkFilterInput = {
 type MarkdownRemarkFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
-  readonly last_modified_at: Maybe<DateQueryOperatorInput>;
   readonly categories: Maybe<StringQueryOperatorInput>;
+  readonly last_modified_at: Maybe<DateQueryOperatorInput>;
 };
 
 type JSONQueryOperatorInput = {
@@ -1307,8 +1300,8 @@ type FileFieldsEnum =
   | 'childrenMarkdownRemark.id'
   | 'childrenMarkdownRemark.frontmatter.title'
   | 'childrenMarkdownRemark.frontmatter.path'
-  | 'childrenMarkdownRemark.frontmatter.last_modified_at'
   | 'childrenMarkdownRemark.frontmatter.categories'
+  | 'childrenMarkdownRemark.frontmatter.last_modified_at'
   | 'childrenMarkdownRemark.excerpt'
   | 'childrenMarkdownRemark.rawMarkdownBody'
   | 'childrenMarkdownRemark.fileAbsolutePath'
@@ -1364,8 +1357,8 @@ type FileFieldsEnum =
   | 'childMarkdownRemark.id'
   | 'childMarkdownRemark.frontmatter.title'
   | 'childMarkdownRemark.frontmatter.path'
-  | 'childMarkdownRemark.frontmatter.last_modified_at'
   | 'childMarkdownRemark.frontmatter.categories'
+  | 'childMarkdownRemark.frontmatter.last_modified_at'
   | 'childMarkdownRemark.excerpt'
   | 'childMarkdownRemark.rawMarkdownBody'
   | 'childMarkdownRemark.fileAbsolutePath'
@@ -2358,11 +2351,6 @@ type SitePluginPackageJsonPeerDependenciesFilterInput = {
   readonly version: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePageContextFilterInput = {
-  readonly html: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-};
-
 type SitePageConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePageEdge>;
@@ -2590,9 +2578,7 @@ type SitePageFieldsEnum =
   | 'internal.ignoreType'
   | 'internal.mediaType'
   | 'internal.owner'
-  | 'internal.type'
-  | 'context.html'
-  | 'context.title';
+  | 'internal.type';
 
 type SitePageGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -2616,7 +2602,6 @@ type SitePageFilterInput = {
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
-  readonly context: Maybe<SitePageContextFilterInput>;
 };
 
 type SitePageSortInput = {
@@ -2673,8 +2658,8 @@ type MarkdownRemarkFieldsEnum =
   | 'id'
   | 'frontmatter.title'
   | 'frontmatter.path'
-  | 'frontmatter.last_modified_at'
   | 'frontmatter.categories'
+  | 'frontmatter.last_modified_at'
   | 'excerpt'
   | 'rawMarkdownBody'
   | 'fileAbsolutePath'

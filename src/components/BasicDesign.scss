@@ -26,3 +26,11 @@ h6 {
     line-break: normal;
     word-wrap: break-word;
 }
+
+body {
+    overflow: hidden;
+    // -ms-overflow-style: none;
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
+}
