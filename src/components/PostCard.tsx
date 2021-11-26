@@ -12,7 +12,7 @@ const Img = styled.div``;
 
 const PostInfo = styled.div``;
 
-const Post: React.FC = (children, ...props) => {
+const PostCard: React.FC = (children, ...props) => {
     return (
         <Wrapper>
             <PostInfo>
@@ -22,4 +22,4 @@ const Post: React.FC = (children, ...props) => {
     );
 };
 
-export default Post;
+export default PostCard;

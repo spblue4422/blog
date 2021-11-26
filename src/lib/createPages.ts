@@ -19,14 +19,12 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
                         frontmatter {
                             title
                             path
-                            category
+                            categories
                             last_modified_at(formatString: "YYYY-MM-DD")
                         }
                     }
                 }
             }
-
-           
         }
     `);
 
@@ -39,7 +37,9 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
             path: node.frontmatter.path,
             context: {
                 html: node.html,
-                title: node.frontmatter.title
+                title: node.frontmatter.title,
+                category: node.frontmatter.categories,
+                last_modified_at: node.frontmatter.last_modified_at
             },
             component: path.resolve(__dirname, '../components/PostTemplate.tsx')
         });

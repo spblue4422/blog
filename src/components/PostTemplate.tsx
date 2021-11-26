@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from './Layout';
 import { ITemplateProps } from '../interface';
-import './BasicDesign.scss';
+//import './BasicDesign.scss';
 
 type IPostTemplateProps = ITemplateProps<{
     html: string;
@@ -13,7 +13,7 @@ type IPostTemplateProps = ITemplateProps<{
 const PostTemplate: React.FC<IPostTemplateProps> = React.memo((props) => {
     const { title, html, category, last_modified_at } = props.pageContext;
     return (
-        <Layout>
+        <Layout currentCategory={category}>
             <h2>{title}</h2>
             <h4>{category}</h4>
             <h4>{last_modified_at}</h4>

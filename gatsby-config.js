@@ -8,6 +8,10 @@ module.exports = {
         `gatsby-plugin-typescript`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-styled-components`,
+        // {
+        //     resolve: `gatsby-plugin-scss-typescript`,
+        //     options: {}
+        // },
         `gatsby-plugin-image`,
         {
             resolve: `gatsby-source-filesystem`,

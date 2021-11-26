@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import './Layout.css';
-import { Sidebar } from './Sidebar';
+import { Sidebar, SidebarProps } from './Sidebar';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -33,10 +33,10 @@ const Content = styled.div`
 `;
 
 //index page 일때만 listheader 추가
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<SidebarProps> = ({ currentCategory, children }) => {
     return (
         <Wrapper>
-            <Sidebar />
+            <Sidebar currentCategory={currentCategory} />
             <PostsWrapper>
                 {/* children */}
                 <Content>{children}</Content>

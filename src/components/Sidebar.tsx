@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import oc from 'open-color';
@@ -14,7 +14,7 @@ const Wrapper = styled.nav`
     background-color: ${oc.cyan[6]};
 `;
 
-const NavItem = styled(Link)`
+const AboutLink = styled(Link)`
     margin-top: 30px;
     width: 100%;
     height: 60px;
@@ -22,7 +22,36 @@ const NavItem = styled(Link)`
     flex-direction: column;
     text-align: center;
     color: ${oc.gray[1]};
-    font-weight: 13px;
+    font-size: 20px;
+`;
+
+const TagList = styled.ul`
+    margin: 50px 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10%;
+    background-color: ${oc.cyan[7]};
+`;
+
+const NavItem = styled(Link)<NavItemProps>`
+    margin: 10px auto 0px auto;
+    padding: 5px;
+    width: 90%;
+    text-align: center;
+    background-color: ${(props) => (props.status === 'active' ? oc.gray[0] : oc.cyan[8])};
+    color: ${(props) => (props.status === 'active' ? oc.cyan[6] : oc.gray[0])};
+    font-size: 16px;
+    border-radius: 12px;
+
+    &:hover {
+        opacity: ${(props) => (props.status === 'active' ? 1 : 0.8)};
+    }
+    &:active {
+        background-color: ${(props) => (props.status == 'active' ? oc.gray[3] : oc.cyan[9])};
+    }
 `;
 
 const Profile = styled.div`
@@ -37,11 +66,33 @@ const Profile = styled.div`
     flex-direction: column;
 `;
 
-export const Sidebar: React.FC = (props) => {
+export interface SidebarProps {
+    currentCategory: string;
+}
+
+export interface NavItemProps {
+    status: string;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ currentCategory }) => {
+    const categories: string[] = ['All', 'Travel', 'Game', 'Dev'];
+
     return (
         <Wrapper>
             <Profile></Profile>
-            <NavItem to="/about">spblue4422</NavItem>
+            <AboutLink to="/about">spblue4422</AboutLink>
+            <TagList>
+                {categories.map((category, idx) => (
+                    // /category/${category}
+                    <NavItem
+                        key={idx}
+                        to="/"
+                        status={currentCategory === category ? 'active' : 'none'}
+                    >
+                        {category}
+                    </NavItem>
+                ))}
+            </TagList>
         </Wrapper>
     );
 };
