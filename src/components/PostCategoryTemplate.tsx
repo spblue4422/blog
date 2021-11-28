@@ -20,7 +20,7 @@ const PostListTemplate: React.FC<IPostListTemplateProps> = React.memo((props) =>
         <Layout currentCategory={currentCategory}>
             <PostList>
                 {nodes.map((node, idx) => (
-                    <PostCard key={idx}></PostCard>
+                    <PostCard key={idx} node={node}></PostCard>
                 ))}
             </PostList>
         </Layout>

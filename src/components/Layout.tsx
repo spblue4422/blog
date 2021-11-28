@@ -12,7 +12,6 @@ const Wrapper = styled.div`
 
 const PostsWrapper = styled.div`
     flex: 5;
-    height: 100vh;
     align-items: center;
     margin: 0 auto;
     padding: 30px;
@@ -27,20 +26,12 @@ const ListHeader = styled.div`
     padding: 10px 0 30px 0;
 `;
 
-const Content = styled.div`
-    margin: 30px auto 0 auto;
-    width: 60%;
-`;
-
 //index page 일때만 listheader 추가
 const Layout: React.FC<SidebarProps> = ({ currentCategory, children }) => {
     return (
         <Wrapper>
             <Sidebar currentCategory={currentCategory} />
-            <PostsWrapper>
-                {/* children */}
-                <Content>{children}</Content>
-            </PostsWrapper>
+            <PostsWrapper>{children}</PostsWrapper>
         </Wrapper>
     );
 };

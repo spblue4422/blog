@@ -27,9 +27,9 @@ const AboutLink = styled(Link)`
 
 const TagList = styled.ul`
     margin: 50px 10px;
-    padding-top: 10px;
-    padding-bottom: 20px;
+    padding: 10px 5px;
     width: 90%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     border-radius: 10%;
@@ -37,7 +37,7 @@ const TagList = styled.ul`
 `;
 
 const NavItem = styled(Link)<NavItemProps>`
-    margin: 10px auto 0px auto;
+    margin: 5px auto 5px auto;
     padding: 5px;
     width: 90%;
     text-align: center;
@@ -80,7 +80,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentCategory }) => {
     return (
         <Wrapper>
             <Profile></Profile>
-            <AboutLink to="/about">spblue4422</AboutLink>
+            <AboutLink to="/about/">spblue4422</AboutLink>
             <TagList>
                 {categories.map((category, idx) => (
                     // /category/${category}

@@ -1,7 +1,7 @@
 ---
 title: test2
 path: test2
-categories: test
+categories: Dev
 last_modified_at: 2021-10-15
 ---
 
