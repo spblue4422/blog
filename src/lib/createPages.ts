@@ -1,6 +1,7 @@
 import { CreatePagesArgs, graphql } from 'gatsby';
 import path from 'path';
-import { MarkdownRemarkConnection, Query } from '../graphql-types';
+import { MarkdownRemarkConnection, Query } from '@src/graphql-types';
+import { node } from 'prop-types';
 
 interface newQuery {
     allMarkdownRemark: MarkdownRemarkConnection;
@@ -39,9 +40,16 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
                 html: node.html,
                 title: node.frontmatter.title,
                 category: node.frontmatter.categories,
-                last_modified_at: node.frontmatter.last_modified_at
+                last_modified_at: node.frontmatter.last_modified_at,
+                path: node.frontmatter.path
             },
             component: path.resolve(__dirname, '../components/PostTemplate.tsx')
         });
     });
+
+    // data.allPostsByCategory.edges.forEach({ node }) => {
+    //     createPage({
+    //         path: node.frontmatter.
+    //     })
+    // }
 }

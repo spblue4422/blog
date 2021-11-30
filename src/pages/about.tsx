@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 
 import Layout from '../components/Layout';
+import Seo from '../components/Seo';
 
 const Wrapper = styled.div`
     margin: 30px auto 0 auto;
@@ -20,6 +21,7 @@ const AboutPage: React.FC = () => {
 
     return (
         <Layout currentCategory={category}>
+            <Seo title={'about'} subUrl={'/about'} />
             <Wrapper>
                 <AboutTitle>여행과 게임, 컴퓨터를 좋아하는 개발자의 공간</AboutTitle>
                 <AboutContent>

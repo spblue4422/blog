@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     margin: 30px auto 0 auto;
-    width: 70%;
+    width: 75%;
 `;
 
 const ListWrapper = styled.ul`

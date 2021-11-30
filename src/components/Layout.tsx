@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import './Layout.css';
+import './layout.css';
 import { Sidebar, SidebarProps } from './Sidebar';
 
 const Wrapper = styled.div`

@@ -32,7 +32,7 @@ const TagList = styled.ul`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    border-radius: 10%;
+    border-radius: 13px;
     background-color: ${oc.cyan[7]};
 `;
 
@@ -44,7 +44,7 @@ const NavItem = styled(Link)<NavItemProps>`
     background-color: ${(props) => (props.status === 'active' ? oc.gray[0] : oc.cyan[8])};
     color: ${(props) => (props.status === 'active' ? oc.cyan[6] : oc.gray[0])};
     font-size: 16px;
-    border-radius: 12px;
+    border-radius: 10px;
 
     &:hover {
         opacity: ${(props) => (props.status === 'active' ? 1 : 0.8)};

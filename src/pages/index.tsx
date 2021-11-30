@@ -5,6 +5,7 @@ import { Query, MarkdownRemarkEdge } from '../graphql-types';
 import Layout from '../components/Layout';
 import PostList from '../components/PostList';
 import PostCard from '../components/PostCard';
+import Seo from '../components/Seo';
 //import '.BasicDesign.scss';
 
 const LatestPostListQuery = graphql`
@@ -33,8 +34,9 @@ const IndexPage: React.FC = () => {
 
     return (
         <Layout currentCategory={currentCategory}>
+            <Seo title={'Home'} />
             <PostList>
-                { data.allMarkdownRemark.edges.map((edge, idx) => (
+                {data.allMarkdownRemark.edges.map((edge, idx) => (
                     <PostCard key={idx} node={edge.node}></PostCard>
                 ))}
             </PostList>

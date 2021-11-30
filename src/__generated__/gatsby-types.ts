@@ -282,6 +282,7 @@ type Site_buildTimeArgs = {
 type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly mainUrl: Maybe<Scalars['String']>;
   readonly author: Maybe<Scalars['String']>;
 };
 
@@ -320,6 +321,7 @@ type SitePageContext = {
   readonly title: Maybe<Scalars['String']>;
   readonly category: Maybe<Scalars['String']>;
   readonly last_modified_at: Maybe<Scalars['Date']>;
+  readonly path: Maybe<Scalars['String']>;
 };
 
 type MarkdownHeading = {
@@ -1934,6 +1936,7 @@ type DirectorySortInput = {
 type SiteSiteMetadataFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
+  readonly mainUrl: Maybe<StringQueryOperatorInput>;
   readonly author: Maybe<StringQueryOperatorInput>;
 };
 
@@ -1986,6 +1989,7 @@ type SiteFieldsEnum =
   | 'buildTime'
   | 'siteMetadata.title'
   | 'siteMetadata.description'
+  | 'siteMetadata.mainUrl'
   | 'siteMetadata.author'
   | 'port'
   | 'host'
@@ -2278,6 +2282,7 @@ type SitePageContextFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly category: Maybe<StringQueryOperatorInput>;
   readonly last_modified_at: Maybe<DateQueryOperatorInput>;
+  readonly path: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -2509,6 +2514,7 @@ type SitePageFieldsEnum =
   | 'context.title'
   | 'context.category'
   | 'context.last_modified_at'
+  | 'context.path'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -3337,7 +3343,10 @@ type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArr
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'mainUrl' | 'author'>
+      & { defaultTitle: SiteSiteMetadata['title'], defaultDescription: SiteSiteMetadata['description'] }
+    )> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
