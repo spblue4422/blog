@@ -30,10 +30,11 @@ const PostTitle = styled.h3`
 `;
 
 const PostCategory = styled.div`
-    background-color: ${oc.gray[4]};
-    color: ${oc.gray[8]};
+    background-color: ${oc.gray[1]};
+    color: ${oc.gray[5]};
+    font-size: 16px;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 6px;
     display: inline-block;
 `;
 

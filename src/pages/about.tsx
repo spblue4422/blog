@@ -17,7 +17,7 @@ const AboutTitle = styled.div``;
 const AboutContent = styled.div``;
 
 const AboutPage: React.FC = () => {
-    const category: string = 'All';
+    const category: string = 'None';
 
     return (
         <Layout currentCategory={category}>

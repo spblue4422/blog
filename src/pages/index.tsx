@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import { Query, MarkdownRemarkEdge } from '../graphql-types';
+import { Query } from '../graphql-types';
 
 import Layout from '../components/Layout';
 import PostList from '../components/PostList';

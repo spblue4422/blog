@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const PostsWrapper = styled.div`
-    flex: 5;
+    flex: 10;
     align-items: center;
     margin: 0 auto;
     padding: 30px;

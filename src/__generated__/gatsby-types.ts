@@ -321,7 +321,25 @@ type SitePageContext = {
   readonly title: Maybe<Scalars['String']>;
   readonly category: Maybe<Scalars['String']>;
   readonly last_modified_at: Maybe<Scalars['Date']>;
+  readonly pagePath: Maybe<Scalars['String']>;
+  readonly edges: Maybe<ReadonlyArray<Maybe<SitePageContextEdges>>>;
+};
+
+type SitePageContextEdges = {
+  readonly node: Maybe<SitePageContextEdgesNode>;
+};
+
+type SitePageContextEdgesNode = {
+  readonly excerpt: Maybe<Scalars['String']>;
+  readonly frontmatter: Maybe<SitePageContextEdgesNodeFrontmatter>;
+  readonly id: Maybe<Scalars['String']>;
+};
+
+type SitePageContextEdgesNodeFrontmatter = {
+  readonly categories: Maybe<Scalars['String']>;
+  readonly last_modified_at: Maybe<Scalars['Date']>;
   readonly path: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
 };
 
 type MarkdownHeading = {
@@ -2282,7 +2300,29 @@ type SitePageContextFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly category: Maybe<StringQueryOperatorInput>;
   readonly last_modified_at: Maybe<DateQueryOperatorInput>;
+  readonly pagePath: Maybe<StringQueryOperatorInput>;
+  readonly edges: Maybe<SitePageContextEdgesFilterListInput>;
+};
+
+type SitePageContextEdgesFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextEdgesFilterInput>;
+};
+
+type SitePageContextEdgesFilterInput = {
+  readonly node: Maybe<SitePageContextEdgesNodeFilterInput>;
+};
+
+type SitePageContextEdgesNodeFilterInput = {
+  readonly excerpt: Maybe<StringQueryOperatorInput>;
+  readonly frontmatter: Maybe<SitePageContextEdgesNodeFrontmatterFilterInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextEdgesNodeFrontmatterFilterInput = {
+  readonly categories: Maybe<StringQueryOperatorInput>;
+  readonly last_modified_at: Maybe<DateQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -2514,7 +2554,10 @@ type SitePageFieldsEnum =
   | 'context.title'
   | 'context.category'
   | 'context.last_modified_at'
-  | 'context.path'
+  | 'context.pagePath'
+  | 'context.edges'
+  | 'context.edges.node.excerpt'
+  | 'context.edges.node.id'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -3339,6 +3382,11 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type dProjectblogsrccomponentsSidebarTsx1225706525QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type dProjectblogsrccomponentsSidebarTsx1225706525Query = { readonly allMarkdownRemark: { readonly group: ReadonlyArray<Pick<MarkdownRemarkGroupConnection, 'fieldValue' | 'totalCount'>> } };
 
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -1,7 +1,7 @@
 ---
 title: test6
 path: test6
-categories: Dev
+categories: Travel
 last_modified_at: 2021-10-19
 ---
 

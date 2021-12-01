@@ -1,7 +1,7 @@
 ---
 title: test3
 path: test3
-categories: Dev
+categories: Game
 last_modified_at: 2021-10-16
 ---
 

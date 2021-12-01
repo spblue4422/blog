@@ -2,33 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ITemplateProps } from '../interface';
-import { MarkdownRemark } from '../graphql-types';
+import { MarkdownRemark, MarkdownRemarkEdge } from '../graphql-types';
 import Layout from './Layout';
 import PostList from './PostList';
 import PostCard from './PostCard';
 import Seo from './Seo';
 
-type IPostListTemplateProps = ITemplateProps<{
+type IPostCategoryTemplateProps = ITemplateProps<{
     title: string;
-    currentCategory: string;
-    nodes: Array<Pick<MarkdownRemark, 'frontmatter' | 'excerpt' | 'id'>>;
+    pagePath: string;
+    nodes?: Array<Pick<MarkdownRemark, 'frontmatter' | 'excerpt' | 'id'>>;
+    edges?: Array<MarkdownRemarkEdge>;
 }>;
 
-const PostListTemplate: React.FC<IPostListTemplateProps> = React.memo((props) => {
-    const { title, nodes, currentCategory } = props.pageContext;
-    //nodes.map(node => (key={node.id} post={node}));
+const PostCategoryTemplate: React.FC<IPostCategoryTemplateProps> = React.memo((props) => {
+    const { title, pagePath, edges } = props.pageContext;
     return (
-        <Layout currentCategory={currentCategory}>
-            <Seo title={title} subUrl={`/category/${currentCategory}`} />
-            <PostList>
-                {nodes.map((node, idx) => (
-                    <PostCard key={idx} node={node}></PostCard>
+        <Layout currentCategory={title}>
+            <Seo title={title} subUrl={pagePath} />
+            {
+                <PostList>
+                    {edges.map((edge) => (
+                        <PostCard key={edge.node.id} node={edge.node}></PostCard>
+                    ))}
+                </PostList>
+            }
+            {/* <PostList>
+                {nodes.map((node) => (
+                    <PostCard key={node.id} node={node}></PostCard>
                 ))}
-            </PostList>
+            </PostList> */}
         </Layout>
     );
 });
 
-PostListTemplate.displayName = 'PostListTemplate';
+PostCategoryTemplate.displayName = 'PostCategoryTemplate';
 
-export default PostListTemplate;
+export default PostCategoryTemplate;

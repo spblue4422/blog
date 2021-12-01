@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import oc from 'open-color';
+import { Query } from '@src/graphql-types';
 
 const Wrapper = styled.nav`
-    flex: 2;
+    flex: 3;
     display: flex;
     border-right: 0px;
     flex-direction: column;
@@ -15,7 +16,7 @@ const Wrapper = styled.nav`
 `;
 
 const AboutLink = styled(Link)`
-    margin-top: 30px;
+    margin-top: 10px;
     width: 100%;
     height: 60px;
     display: flex;
@@ -28,6 +29,7 @@ const AboutLink = styled(Link)`
 const TagList = styled.ul`
     margin: 50px 10px;
     padding: 10px 5px;
+    max-width: 330px;
     width: 90%;
     box-sizing: border-box;
     display: flex;
@@ -55,10 +57,9 @@ const NavItem = styled(Link)<NavItemProps>`
 `;
 
 const Profile = styled.div`
-    width: 225px;
-    height: 225px;
+    width: 80px;
+    height: 80px;
     margin-top: 220px;
-    margin-bottom: 30px;
     padding: 5px;
     border-radius: 50%;
     background-color: ${oc.gray[0]};
@@ -74,22 +75,58 @@ export interface NavItemProps {
     status: string;
 }
 
+interface QueryValue {
+    ctg: string;
+    count: number;
+}
+
+const PostCountQuery = graphql`
+    query {
+        allMarkdownRemark {
+            group(field: frontmatter___categories) {
+                fieldValue
+                totalCount
+            }
+        }
+    }
+`;
+
 export const Sidebar: React.FC<SidebarProps> = ({ currentCategory }) => {
-    const categories: string[] = ['All', 'Travel', 'Game', 'Dev'];
+    const data = useStaticQuery<Query>(PostCountQuery);
+
+    let categories: QueryValue[] = [];
+
+    data.allMarkdownRemark.group.map((category, idx) => {
+        {
+            categories.push({
+                ctg: category.fieldValue,
+                count: category.totalCount
+            });
+        }
+    });
+
+    let totalCount = 0;
+    categories.map((category, idx) => {
+        totalCount += category.count;
+    });
 
     return (
         <Wrapper>
             <Profile></Profile>
             <AboutLink to="/about/">spblue4422</AboutLink>
             <TagList>
+                <NavItem key={100} to={'/'} status={currentCategory === 'All' ? 'active' : 'none'}>
+                    All
+                    <div>{totalCount}</div>
+                </NavItem>
                 {categories.map((category, idx) => (
-                    // /category/${category}
                     <NavItem
                         key={idx}
-                        to="/"
-                        status={currentCategory === category ? 'active' : 'none'}
+                        to={`/category/${category.ctg}`}
+                        status={currentCategory === category.ctg ? 'active' : 'none'}
                     >
-                        {category}
+                        {`${category.ctg}`}
+                        <div>{category.count}</div>
                     </NavItem>
                 ))}
             </TagList>
