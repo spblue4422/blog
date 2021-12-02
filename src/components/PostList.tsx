@@ -4,23 +4,23 @@ import styled from 'styled-components';
 import oc from 'open-color';
 
 const Wrapper = styled.div`
-    margin: 30px auto 0 auto;
-    width: 70%;
+    margin: 0 auto;
+    padding-top: 90px;
+    width: 40%;
 `;
 
 const ListHeader = styled.nav`
-    height: 50px;
-    border-bottom: 1px solid;
+    padding-left: 15px;
 `;
 
 const NavItem = styled(Link)<NavItemProps>`
-    margin: 5px 5px 5px;
+    margin: 3px;
     padding: 5px;
-    width: 50px;
+    width: 35px;
     text-align: center;
     background-color: ${(props) => (props.status ? oc.cyan[6] : oc.gray[3])};
     color: ${(props) => (props.status ? oc.gray[0] : oc.gray[6])};
-    font-size: 16px;
+    font-size: 13px;
     border-radius: 10px;
     display: inline-block;
     &:hover {
@@ -32,8 +32,10 @@ const NavItem = styled(Link)<NavItemProps>`
 `;
 
 const ListWrapper = styled.ul`
+    margin-top: 0px;
     margin-left: 0px;
-    padding-left: 50px;
+    padding-top: 20px;
+    padding-left: 30px;
 `;
 
 interface NavItemProps {
