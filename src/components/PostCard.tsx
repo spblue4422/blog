@@ -5,8 +5,6 @@ import oc from 'open-color';
 
 const Wrapper = styled.div`
     margin: auto;
-    padding-top: 10px;
-    padding-left: 10px;
     width: 100%;
 `;
 
@@ -15,9 +13,10 @@ const Img = styled.div``;
 const PostInfo = styled(Link)`
     width: 100%;
     border-radius: 10px;
-    box-sizing: border-box;
-    padding: 10px 10px;
+    padding: 10px 20px;
     display: block;
+    box-sizing: border-box;
+
     &:hover {
         background-color: ${oc.gray[2]};
     }

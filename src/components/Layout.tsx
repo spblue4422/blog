@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 const PostsWrapper = styled.div`
     align-items: center;
     margin: 0 auto;
+    padding-top: 90px;
     -ms-overflow-style: none;
     scrollbar-width: none;
 
@@ -23,7 +24,7 @@ const PostsWrapper = styled.div`
 `;
 
 //index page 일때만 listheader 추가
-const Layout: React.FC<SidebarProps> = ({ currentCategory, children }) => {
+const Layout: React.FC = ({ children }) => {
     return (
         <Wrapper>
             <Header/>

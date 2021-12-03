@@ -17,15 +17,15 @@ type IPostTemplateProps = ITemplateProps<{
 }>;
 
 const Wrapper = styled.div`
-    margin: 30px auto 0 auto;
-    padding: 0px 50px;
-    width: 70%;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 40%;
     box-sizing: border-box;
 `;
 
 const PostHeader = styled.div`
     margin-bottom: 35px;
-    padding-top: 30px;
+    padding-top: 10px;
     box-sizing: border-box;
 `;
 const PostTitle = styled.h1`
@@ -49,7 +49,7 @@ const PostContent = styled.p``;
 const PostTemplate: React.FC<IPostTemplateProps> = React.memo((props) => {
     const { title, html, pagePath, category, last_modified_at } = props.pageContext;
     return (
-        <Layout currentCategory={category}>
+        <Layout>
             <Seo title={title} subUrl={`/${pagePath}`} />
             <Wrapper>
                 <PostHeader>

@@ -1,22 +1,24 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React, { useEffect } from 'react';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import oc from 'open-color';
 
+import { Query } from '@src/graphql-types';
+
 const Wrapper = styled.div`
     margin: 0 auto;
-    padding-top: 90px;
     width: 40%;
 `;
 
 const ListHeader = styled.nav`
     padding-left: 15px;
+    padding-bottom: 5px;
 `;
 
 const NavItem = styled(Link)<NavItemProps>`
     margin: 3px;
     padding: 5px;
-    width: 35px;
+    width: 50px;
     text-align: center;
     background-color: ${(props) => (props.status ? oc.cyan[6] : oc.gray[3])};
     color: ${(props) => (props.status ? oc.gray[0] : oc.gray[6])};
@@ -31,37 +33,74 @@ const NavItem = styled(Link)<NavItemProps>`
     }
 `;
 
-const ListWrapper = styled.ul`
-    margin-top: 0px;
-    margin-left: 0px;
-    padding-top: 20px;
-    padding-left: 30px;
+const CountWrapper = styled.div`
+    display: inline-block;
 `;
+
+interface PostListProps {
+    currentCategory: string;
+}
 
 interface NavItemProps {
     status: boolean;
 }
 
-const PostList: React.FC = ({ children, ...props }) => {
+interface QueryValue {
+    ctg: string;
+    count: number;
+}
+
+const PostCountQuery = graphql`
+    query {
+        allMarkdownRemark {
+            group(field: frontmatter___categories) {
+                fieldValue
+                totalCount
+            }
+        }
+    }
+`;
+
+const PostList: React.FC<PostListProps> = ({ currentCategory, children }) => {
+    let categories: QueryValue[] = [];
+    let totalCount = 0;
+
+    const data = useStaticQuery<Query>(PostCountQuery);
+
+    categories.splice(0, categories.length);
+    data.allMarkdownRemark.group.map((category, idx) => {
+        {
+            categories.push({
+                ctg: category.fieldValue,
+                count: category.totalCount
+            });
+        }
+    });
+
+    totalCount = 0;
+    categories.map((category, idx) => {
+        totalCount += category.count;
+    });
+
     return (
         <Wrapper>
-            <ListWrapper>
-                <ListHeader>
-                    <NavItem to={'/'} status={true}>
-                        All
+            <ListHeader>
+                <NavItem to={'/'} status={currentCategory === 'All' ? true : false}>
+                    All
+                    <CountWrapper>{totalCount}</CountWrapper>
+                </NavItem>
+                {categories.map((category, idx) => (
+                    <NavItem
+                        key={`${idx}.${category.ctg}`}
+                        to={`/category/${category.ctg}`}
+                        status={currentCategory === category.ctg ? true : false}
+                    >
+                        {category.ctg}
+                        <CountWrapper>{category.count}</CountWrapper>
                     </NavItem>
-                    <NavItem to={'/category/Travel'} status={false}>
-                        Travel
-                    </NavItem>
-                    <NavItem to={'/category/Game'} status={false}>
-                        Game
-                    </NavItem>
-                    <NavItem to={'/category/Dev'} status={false}>
-                        Dev
-                    </NavItem>
-                </ListHeader>
-                {children}
-            </ListWrapper>
+                ))}
+            </ListHeader>
+            {children}
         </Wrapper>
     );
 };

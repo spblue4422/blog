@@ -30,12 +30,10 @@ const LatestPostListQuery = graphql`
 const IndexPage: React.FC = () => {
     const data = useStaticQuery<Query>(LatestPostListQuery);
 
-    const currentCategory: string = 'All';
-
     return (
-        <Layout currentCategory={currentCategory}>
+        <Layout>
             <Seo title={'Home'} />
-            <PostList>
+            <PostList currentCategory={'All'}>
                 {data.allMarkdownRemark.edges.map((edge, idx) => (
                     <PostCard key={idx} node={edge.node}></PostCard>
                 ))}

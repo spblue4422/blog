@@ -6,8 +6,9 @@ import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 
 const Wrapper = styled.div`
-    margin: 30px auto 0 auto;
-    width: 70%;
+    margin: 0 auto;
+    padding-top: 90px;
+    width: 40%;
 `;
 
 const LinkItem = styled(Link)``;
@@ -17,10 +18,8 @@ const AboutTitle = styled.div``;
 const AboutContent = styled.div``;
 
 const AboutPage: React.FC = () => {
-    const category: string = 'None';
-
     return (
-        <Layout currentCategory={category}>
+        <Layout>
             <Seo title={'about'} subUrl={'/about'} />
             <Wrapper>
                 <AboutTitle>여행과 게임, 컴퓨터를 좋아하는 개발자의 공간</AboutTitle>

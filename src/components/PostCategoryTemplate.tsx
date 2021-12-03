@@ -18,10 +18,10 @@ type IPostCategoryTemplateProps = ITemplateProps<{
 const PostCategoryTemplate: React.FC<IPostCategoryTemplateProps> = React.memo((props) => {
     const { title, pagePath, edges } = props.pageContext;
     return (
-        <Layout currentCategory={title}>
+        <Layout>
             <Seo title={title} subUrl={pagePath} />
             {
-                <PostList>
+                <PostList currentCategory={title}>
                     {edges.map((edge) => (
                         <PostCard key={edge.node.id} node={edge.node}></PostCard>
                     ))}
